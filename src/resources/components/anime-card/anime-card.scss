@@ -1,0 +1,63 @@
+.anime-card {
+    border-radius: 3px;
+    box-shadow: 0 2px 20px rgba(49,54,68,.09);
+    display: inline-grid;
+    grid-template-columns: 185px auto;
+    height: 265px;
+    min-width: 370px;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+
+    .image {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        position: relative;
+        .overlay {
+            padding: 10px;
+            background-color: rgba(0,0,0,0.5);
+        }
+    }
+
+    .data {
+        position: relative;
+        .season {
+            background-color: #13171D;
+            text-align: center;
+            padding: 5px;        
+        }
+        .extra {
+            background-color: #191D26;
+            text-align: center;
+            padding: 5px; 
+        }
+        .description {
+            overflow-y: hidden;
+            height: 160px;
+            overflow: hidden;
+            padding: 12px;
+            line-height: 1.2rem;
+            font-size: 0.8rem;
+            background-color: #1F232D;
+        }
+        .description:hover {
+            overflow-y: scroll;
+        }
+        .genres {
+            background-color: #191D26;
+            text-align: center;
+            padding: 5px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+}

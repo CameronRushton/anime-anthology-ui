@@ -34,7 +34,7 @@ export class AnilistAPIManager {
     }
 
     // TODO: How should queries be written? Should we make a builder? Put queries in a file and import the variables in a manager?
-    getHighestRatedAllTime() {
+    getHighestRatedAllTimeFull() {
         let query = `
             {
                 Highest_Rated_All_time:Page(page:1,perPage:6) {
@@ -81,6 +81,46 @@ export class AnilistAPIManager {
                         timeUntilAiring 
                         episode
                     }
+                    studios(isMain:true){
+                        edges{
+                            isMain 
+                            node
+                            {
+                                id 
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }`
+        return this.queryAnilist(query);
+    }
+
+    getHighestRatedAllTime() {
+        let query = `
+            {
+                Highest_Rated_All_time:Page(page:1,perPage:6) {
+                media(sort:SCORE_DESC, type:ANIME, isAdult:false) {
+                    id 
+                    title {
+                    english
+                    }
+                    coverImage {
+                    large
+                    }
+                    startDate{
+                        year 
+                        month 
+                        day
+                    }
+                    
+                    bannerImage 
+                    season 
+                    description 
+                    format 
+                    genres 
+                    averageScore 
                     studios(isMain:true){
                         edges{
                             isMain 

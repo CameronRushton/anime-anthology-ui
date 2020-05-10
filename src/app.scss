@@ -1,4 +1,5 @@
 @import "resources/components/header/header";
+@import "resources/components/anime-card/anime-card";
 
 // $green: #20EA42;
 // $shoyu: #08D8B9;
@@ -24,9 +25,10 @@ body {
   line-height: 24px;
   font-size: 14px;
   font-family: "Lato", sans-serif;
+  // font-family: Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: normal;
   color: $text-color;
-  background-color: $background-color;
+  background-color: #272C38;
 }
 
 h1 {
@@ -84,4 +86,27 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
   padding: 10% 0%; 
+}
+@media(max-width: 1440px) {
+  .container {
+    max-width: 1400px; 
+  }
+}
+@media(max-width: 1600px) {
+  .container {
+    max-width: 1540px; 
+  }
+}
+@media(max-width: 1920px) {
+  .container {
+    max-width: 1700px; 
+  }
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+.media-item {
+  margin-bottom: 20px;
 }

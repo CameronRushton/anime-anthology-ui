@@ -1,0 +1,41 @@
+<template>
+    <div class="anime-card">
+        <div class="image" style="background-image: url(${image_url});">
+            <div class="overlay">
+                <a class="title">${name}</a>
+                <div class="studio">${studio}</div>
+            </div>
+        </div>
+        <div class="data">
+            <div class="season">
+                Spring 2015
+            </div>
+            <div class="extra">
+                <span class="format">TV</span>
+                <span class="score">90%</span>
+            </div>
+            <div class="description">
+                What would the world be like if 80 percent of the population manifested extraordinary superpowers called “Quirks” at age four? Heroes and villains would be battling it out everywhere! Becoming a hero would mean learning to use your power, but where would you go to study? U.A. High's Hero Program of course! But what would you do if you were one of the 20 percent who were born Quirkless?<br><br>
+
+Middle school student Izuku Midoriya wants to be a hero more than anything, but he hasn't got an ounce of power in him. With no chance of ever getting into the prestigious U.A. High School for budding heroes, his life is looking more and more like a dead end. Then an encounter with All Might, the greatest hero of them all gives him a chance to change his destiny…<br><br>
+
+(Source: Viz Media)
+            </div>
+            <div class="genres">
+                <i if.bind="genresMap.Action" class="fas fa-bolt"></i>
+                <!-- background-color: yellow;
+                width: 20px;
+                height: 20px;
+                color: black;
+                border-radius: 50%;
+                padding: 3px;
+                margin: 3px; -->
+                <i if.bind="genresMap.Adventure" class="fas fa-mountain"></i>
+                <i if.bind="genresMap.Romance" class="far fa-heart"></i>
+                <i if.bind="genresMap.Horror" class="fas fa-ghost"></i>
+                <i if.bind="genresMap.Thriller" class="fas fa-meteor"></i>
+            </div>
+        </div>
+
+    </div>
+</template>
