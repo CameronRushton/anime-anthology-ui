@@ -31,11 +31,22 @@ export class AnimeCard {
     }
 
     constructor() {
-        
     }
 
     attached() {
         this.activateGenres();
+        this.data.description = this.data.description.replace(/\u21b5/g,''); // Remove pesky ↵ character
+        this.colourScore();
+    }
+
+    colourScore() {
+        if (this.data.averageScore >= 80) {
+            this.scoreColour = "green";
+        } else if (this.data.averageScore >= 70) {
+            this.scoreColour = "orange";
+        } else {
+            this.scoreColour = "red";
+        }
     }
     
     activateGenres() {
@@ -46,12 +57,12 @@ export class AnimeCard {
             "Fantasy": false,
             "Comedy": false,
             "Romance": false,
-            "Slice of Life": false,
+            "SliceofLife": false,
             "Psychological": false,
             "Sci-Fi": false,
             "Thriller": false,
             "Horror": false,
-            "Mahou Shojou": false,
+            "MahouShojou": false,
             "Mecha": false,
             "Music": false,
             "Sports": false,
@@ -59,8 +70,9 @@ export class AnimeCard {
             "Supernatural": false,
             "Ecchi": false
         }
-        this.genres.forEach(genre => {
-            this.genresMap[genre] = true;
+        this.data.genres.forEach(genre => {
+            let genreNoSpaces = genre.replace(/ /g,'')
+            this.genresMap[genreNoSpaces] = true;
         });
     }
 

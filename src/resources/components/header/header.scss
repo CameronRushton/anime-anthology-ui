@@ -1,15 +1,8 @@
-$green: #06b124;
-$title-color: #FFF;
-$subtitle-color: honeydew;
-$text-color: #DDD;
-$background-color: #1f2122;//#252525;
-$background-border: #2f3234;//#303030;
-$shoyu: #08D8B9;
-$blue: #005DAA;
-$violet: blueviolet;
+@import "resources/util";
 
 .header1 {
-  background-image: linear-gradient(to right, #333, #222);
+  background-image: linear-gradient(to right, #191919, #212121);
+  box-shadow: 0px 1px 8px 0px rgba(0,0,0,0.5);
   position: fixed;
   width: 100%;
   height: 60px;
@@ -45,15 +38,16 @@ $violet: blueviolet;
       display: flex;
       height: fit-content;
       cursor: pointer;
+      text-decoration: none;
       margin-right: 20px;
       font-size: 20px;
-      color: $subtitle-color;
+      color: $text-color;
       &.active {
         border-bottom: 2px solid $green;
       }
     }
     .item:hover {
-      color: $text-color;
+      color: $text-color-1;
     }
   }
   &.fixed {

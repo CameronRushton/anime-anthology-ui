@@ -9,13 +9,6 @@ export class Header {
 
     constructor(router) {
         this.router = router;
-        this.router.routes.forEach((route, index) => {
-            if (route.name === "home") {
-                route.char = "H";
-            } else {
-                route.char = route.title.charAt(0);
-            }
-        })
         this.screenWidth = screen.width;
         this.showNavOptions = false;
     }

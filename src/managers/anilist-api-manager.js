@@ -136,4 +136,48 @@ export class AnilistAPIManager {
         }`
         return this.queryAnilist(query);
     }
+
+	getDataForAnime(animeIDs) {
+		let mainQuery = `
+            fragment myMedia on
+            Media {
+                id
+                title {
+                    english
+                }
+                coverImage {
+                    large
+                }
+                startDate {
+                    year
+                    month
+                    day
+                }
+                bannerImage
+                season
+                description
+                format
+                genres
+                averageScore
+				studios(isMain:true) {
+					edges {
+						isMain
+						node {
+							id
+							name
+						}
+					}
+				}
+		}`;
+
+		let animeQuery = '';
+		animeIDs.forEach((id, index) => {
+			animeQuery += `anime${index}:Media(id:${id}) {
+			    ...myMedia
+			},`;
+		});
+		mainQuery += `{ ${animeQuery} }`;
+
+		return this.queryAnilist(mainQuery);
+	}
 }

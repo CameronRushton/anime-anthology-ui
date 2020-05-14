@@ -1,39 +1,40 @@
 <template>
+    <div class="title">${data.title.english}</div>
     <div class="anime-card">
-        <div class="image" style="background-image: url(${image_url});">
-            <div class="overlay">
-                <a class="title">${name}</a>
-                <div class="studio">${studio}</div>
-            </div>
+        <div class="image" with.bind="data" style="background-image: url(${coverImage.large});">
+            <!-- <div class="overlay">
+                <div class="studio">${studios.edges[0].node.name}</div>
+            </div> -->
         </div>
         <div class="data">
-            <div class="season">
-                Spring 2015
+            <div class="details">
+                <div class="season">${data.season} ${data.startDate.year}</div>
+                <div class="extra">
+                    <!-- <span class="format">${data.format}</span> -->
+                <span class="score ${scoreColour}">${data.averageScore}</span>
+                </div>
             </div>
-            <div class="extra">
-                <span class="format">TV</span>
-                <span class="score">90%</span>
-            </div>
-            <div class="description">
-                What would the world be like if 80 percent of the population manifested extraordinary superpowers called “Quirks” at age four? Heroes and villains would be battling it out everywhere! Becoming a hero would mean learning to use your power, but where would you go to study? U.A. High's Hero Program of course! But what would you do if you were one of the 20 percent who were born Quirkless?<br><br>
-
-Middle school student Izuku Midoriya wants to be a hero more than anything, but he hasn't got an ounce of power in him. With no chance of ever getting into the prestigious U.A. High School for budding heroes, his life is looking more and more like a dead end. Then an encounter with All Might, the greatest hero of them all gives him a chance to change his destiny…<br><br>
-
-(Source: Viz Media)
-            </div>
-            <div class="genres">
-                <i if.bind="genresMap.Action" class="fas fa-bolt"></i>
-                <!-- background-color: yellow;
-                width: 20px;
-                height: 20px;
-                color: black;
-                border-radius: 50%;
-                padding: 3px;
-                margin: 3px; -->
-                <i if.bind="genresMap.Adventure" class="fas fa-mountain"></i>
-                <i if.bind="genresMap.Romance" class="far fa-heart"></i>
-                <i if.bind="genresMap.Horror" class="fas fa-ghost"></i>
-                <i if.bind="genresMap.Thriller" class="fas fa-meteor"></i>
+            
+            <div class="description" innerhtml.bind="data.description"></div>
+            <div class="genres" with.bind="genresMap">
+                <i if.bind="Action" class="fas fa-bolt action"></i>
+                <img if.bind="Ecchi" src="/assets/images/pantsu-dark.svg" class="ecchi"></img>
+                <i if.bind="Adventure" class="fas fa-mountain adventure "></i>
+                <i if.bind="Romance" class="far fa-heart romance"></i>
+                <i if.bind="Horror" class="fas fa-ghost horror"></i>
+                <i if.bind="Thriller" class="fas fa-meteor thriller"></i>
+                <i if.bind="Drama" class="fas fa-theater-masks drama"></i>
+                <i if.bind="Fantasy" class="fab fa-fort-awesome fantasy"></i>
+                <i if.bind="Comedy" class="fas fa-laugh-squint comedy"></i>
+                <i if.bind="SliceofLife" class="fas fa-sun sol"></i>
+                <i if.bind="Psychological" class="fas fa-brain psychological"></i>
+                <i if.bind="Sci-Fi" class="fas fa-rocket scifi"></i>
+                <i if.bind="MahouShojou" class="fas fa-magic mahoushojou"></i>
+                <i if.bind="Mecha" class="fas fa-robot mecha"></i>
+                <i if.bind="Music" class="fas fa-music music"></i>
+                <i if.bind="Sports" class="fas fa-football-ball sports"></i>
+                <i if.bind="Mystery" class="fas fa-question-circle mystery"></i>
+                <i if.bind="Supernatural" class="fas fa-crow supernatural"></i>
             </div>
         </div>
 

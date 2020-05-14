@@ -1,30 +1,23 @@
 import { inject } from 'aurelia-framework';
 import { Router } from "aurelia-router"
-import { AnilistAPIManager } from 'managers/anilist-api-manager';
 import { MockAnilistAPI } from 'managers/mock-anilist-api';
 
-@inject(Router, AnilistAPIManager, MockAnilistAPI)
+@inject(Router, MockAnilistAPI)
 export class Home {
     
-    constructor(router, anilistAPIManager, mockAnilistAPI) {
+    constructor(router, mockAnilistAPI) {
         this.router = router;
-        this.anilistAPI = anilistAPIManager;
-        this.mockAnilistAPI = mockAnilistAPI;
-
-        this.highestRatedAllTime = []
-        this.highestRatedAllTimePageNum = 1;
+        this.anilistAPI = mockAnilistAPI;
     }
 
     attached() {
-        // this.anilistAPI.getHighestRatedAllTime().then(result => {
-        //     this.animeHighestRatedAllTime = result.data.Highest_Rated_All_time.media;
-        // });
-        this.getHighestRatedAllTime();
+        // window.localStorage.setItem('myCat', 'Tom'); https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+        this.highestRatedAllTime = this.anilistAPI.getHighestRatedAllTime(1);
+        this.highestRatedAllTime = this.highestRatedAllTime.concat(this.anilistAPI.getHighestRatedAllTime(2));
     }
 
-    getHighestRatedAllTime() {
-        this.highestRatedAllTime = this.highestRatedAllTime.concat(this.mockAnilistAPI.getHighestRatedAllTime(this.highestRatedAllTimePageNum));
-        this.highestRatedAllTimePageNum += 1;
+    navigateToAnimeDetails(id) {
+        this.router.navigateToRoute("anime", {id})
     }
 
 }
