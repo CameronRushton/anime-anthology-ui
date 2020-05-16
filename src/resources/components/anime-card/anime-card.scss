@@ -8,6 +8,7 @@
     grid-template-columns: 185px auto;
     height: 265px;
     min-width: 370px;
+    max-width: 410px;
     overflow: hidden;
     position: relative;
     text-align: left;
@@ -127,7 +128,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 20px;
+            min-width: 20px;
+            max-width: 20px;
             height: 20px;
             color: black;
             border-radius: 50%;

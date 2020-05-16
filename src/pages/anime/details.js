@@ -3,7 +3,7 @@ import { Router } from "aurelia-router"
 import { MockAnilistAPI } from 'managers/mock-anilist-api';
 
 @inject(Router, MockAnilistAPI)
-export class Home {
+export class Details {
     
     constructor(router, mockAnilistAPI) {
         this.router = router;
@@ -12,10 +12,6 @@ export class Home {
 
     activate(id) {
         console.log(id);
-    }
-
-    attached() {
-        
     }
 
 }
