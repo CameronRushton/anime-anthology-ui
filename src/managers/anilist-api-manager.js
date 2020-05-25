@@ -1,10 +1,10 @@
 
-export class AnilistAPIManager {
+export class AnilistApiManager {
     constructor() {
     }
 
-    queryAnilist(query, variables) {
-        let url = 'https://graphql.anilist.co'
+    queryAnilist(query, variables, accessToken) {
+        let url = 'https://graphql.anilist.co';
         let options = {
             method: 'POST',
             headers: {
@@ -16,6 +16,11 @@ export class AnilistAPIManager {
                 variables: variables
             })
         };
+        // First, try to get access token from local storage
+        
+        if (accessToken) {
+            options.headers['Authorization'] = 'Bearer ' + accessToken;
+        }
         
         return fetch(url, options).then(this.json).catch(this.handleError);
     }
@@ -33,8 +38,32 @@ export class AnilistAPIManager {
 		return response;
     }
 
+    obtainToken(code) {
+        let url = 'https://anilist.co/api/v2/oauth/token';
+        var options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            json: {
+                'grant_type': 'authorization_code',
+                'client_id': '3512',
+                'client_secret': 'SATJCiTxLLrgGrE5n5ayCHyAF9UcvkpBjpyj3WLb',
+                'redirect_uri': 'https://nostalgic-mirzakhani-5cdbfb.netlify.app/', // http://example.com/callback
+                'code': code, // The Authorization Code received previously
+            }
+        };
+
+        return fetch(url, options).then((error, response, body) => {
+            if (!error && response.statusCode == 200) {
+                console.log(body.access_token);
+            }
+        }).catch(this.handleError);
+    }
+
     // TODO: How should queries be written? Should we make a builder? Put queries in a file and import the variables in a manager?
-    getHighestRatedAllTime() {
+    getHighestRatedAllTimeFull() {
         let query = `
             {
                 Highest_Rated_All_time:Page(page:1,perPage:6) {
@@ -95,7 +124,47 @@ export class AnilistAPIManager {
             }
         }`
         return this.queryAnilist(query);
-	}
+    }
+
+    getHighestRatedAllTime() {
+        let query = `
+            {
+                Highest_Rated_All_time:Page(page:1,perPage:6) {
+                media(sort:SCORE_DESC, type:ANIME, isAdult:false) {
+                    id 
+                    title {
+                    english
+                    }
+                    coverImage {
+                    large
+                    }
+                    startDate{
+                        year 
+                        month 
+                        day
+                    }
+                    
+                    bannerImage 
+                    season 
+                    description 
+                    format 
+                    genres 
+                    averageScore 
+                    studios(isMain:true){
+                        edges{
+                            isMain 
+                            node
+                            {
+                                id 
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }`
+        return this.queryAnilist(query);
+    }
 
 	getDataForAnime(animeIDs) {
 		let mainQuery = `

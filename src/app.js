@@ -23,7 +23,17 @@ export class App {
 				route: '/',
 				name: 'home',
 				moduleId: PLATFORM.moduleName('pages/home/home'),
-				title: "Home",
+				title: "Home"
+			},
+			{
+				route: '/series', //TODO: Rename this because not all anime are series
+				name: 'anime',
+				moduleId: PLATFORM.moduleName('pages/anime/details')
+			},
+			{
+				route: '/success',
+				name: 'success',
+				moduleId: PLATFORM.moduleName('pages/login/success') //TODO: DELETE ME
 			}
 		]);
 	}

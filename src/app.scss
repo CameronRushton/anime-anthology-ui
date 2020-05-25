@@ -1,32 +1,17 @@
 @import "resources/components/header/header";
-
-// $green: #20EA42;
-// $shoyu: #08D8B9;
-// $blue: #005DAA;
-// $background-color: #2f3234;//#303030;
-// $background-border: #1f2122;//#252525;
-
-.green {
-  color: $green;
-}
-.shoyu {
-  color: $shoyu;
-}
-.blue {
-  color: $blue;
-}
-.violet {
-  color: $violet;
-}
+@import "resources/components/anime-card/anime-card";
+@import "resources/util";
 
   
 body {
   line-height: 24px;
   font-size: 14px;
   font-family: "Lato", sans-serif;
+  // font-family: Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: normal;
   color: $text-color;
   background-color: $background-color;
+  overflow-y: scroll;
 }
 
 h1 {
@@ -41,47 +26,86 @@ h1, h2, h3, h4, h5, h6 {
   color: rgba(255,255,255,0.9);
 }
 
-
-
-.thin-outline {
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-.med-outline {
-  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-}
-.thick-outline {
-  text-shadow: -3px 0px black, 0 3px black, 3px 0 black, 0 -3px black;
-}
-.w0 {
-  width: 0px;
-}
-.w20 {
-  width: 20px;
-}
-.w100p {
-  width: 100%;
-}
-.h80 {
-  height: 80px;
-}
-.h300 {
-  height: 300px
-}
-
 .footer-area {
-  background: $background-border;
+  background: #202020;
   padding: 85px 0px 85px 0px;
   display: flex;
   justify-content: space-around;
   .text {
-    color: $subtitle-color;
+    color: $text-color;
   }
 }
 
-.dark-background {
-  background-color: $background-border;
+.container {
+  margin: 0 auto;
+  min-width: 320px;
+  width: 100%;
+}
+@media (max-width: 1040px){
+  .container {
+      padding: 0px;
+  }
+}
+@media (max-width: 1560px) {
+  .container {
+    max-width: 1340px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+@media (min-width: 1560px) {
+  .container {
+    max-width: 1520px;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
 }
 
-.container {
-  padding: 10% 0%; 
+.row {
+  margin-bottom: 20px;
+}
+
+.media-item {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.green {
+  color: $green;
+}
+
+.orange {
+  color: $orange;
+}
+
+.red {
+  color: $red;
+}
+
+.shoyu {
+  color: $shoyu;
+}
+
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  opacity: 75%;
+}
+
+.levelBar {
+  
 }

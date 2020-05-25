@@ -1,0 +1,140 @@
+.title {
+    font-size: 1rem;
+}
+.anime-card {
+    border-radius: 3px;
+    box-shadow: 2px 5px 15px 0px black;
+    display: inline-grid;
+    grid-template-columns: 185px auto;
+    height: 265px;
+    min-width: 370px;
+    max-width: 410px;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+
+    .image {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        position: relative;
+        .overlay {
+            padding: 10px;
+            background-color: rgba(0,0,0,0.6);
+        }
+    }
+
+    .data {
+        position: relative;
+        .details {
+            display: inline-grid;
+            grid-template-columns: auto 50px;
+            min-width: 100%;
+            .season {
+                background-color: #313036;
+                text-align: center;
+                padding: 5px;
+            }
+            .extra {
+                background-color: #313036;
+                text-align: center;
+                padding: 5px; 
+            }
+        }
+        .description {
+            overflow-y: hidden;
+            height: 200px;
+            overflow: hidden;
+            padding: 12px;
+            line-height: 1.2rem;
+            font-size: 0.9rem;
+            background-color: #313036;
+        }
+        .description:hover {
+            overflow-y: scroll;
+        }
+        .genres {
+            background-color: #242528;
+            text-align: center;
+            padding: 5px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .action {
+                background-color: yellow;
+            }
+            .ecchi {
+                background-color: pink;
+            }
+            .adventure {
+                background-color: saddlebrown;
+            }
+            .romance {
+                background-color: red;
+            }
+            .horror {
+                background-color: darkgrey;
+            }
+            .thriller {
+                background-color: orangered;
+            }
+            .drama {
+                background-color: rebeccapurple;
+            }
+            .fantasy {
+                background-color: lightblue;
+            }
+            .comedy {
+                background-color: yellow;
+            }
+            .sol {
+                background-color: yellow;
+            }
+            .psychological {
+                background-color: palevioletred;
+            }
+            .scifi {
+                background-color: blue;
+            }
+            .mahoushojou {
+                background-color: honeydew;
+            }
+            .mecha {
+                background-color: green;
+            }
+            .music {
+                background-color: purple;
+            }
+            .sports {
+                background-color: cyan;
+            }
+            .mystery {
+                background-color: peru;
+            }
+            .supernatural {
+                background-color: honeydew;
+            }
+        }
+        .genres > i,img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 20px;
+            max-width: 20px;
+            height: 20px;
+            color: black;
+            border-radius: 50%;
+            flex: 0 1 calc(20% - 20px);
+            margin: 1px 5px;
+        }
+    }
+}

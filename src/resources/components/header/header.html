@@ -3,10 +3,11 @@
         <div class="header1">
             <div class="title">
                 <!-- <img src="/assets/images/logo.png" alt="" class="logo"> -->
-                My Application
+                ShoYuAnime
             </div>
             <div class="navigation">
                 <a repeat.for="route of router.routes" class="item ${route.navModel.isActive? 'active':''} " href.bind="route.route">${route.title}</a>
+                <a href='https://anilist.co/api/v2/oauth/authorize?client_id=3512&redirect_uri=https://nostalgic-mirzakhani-5cdbfb.netlify.app/&response_type=code' style="opacity: 0%;">Login with AniList</a>
             </div>
         </div>
     </nav>
