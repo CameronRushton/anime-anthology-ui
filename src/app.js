@@ -31,6 +31,11 @@ export class App {
 				moduleId: PLATFORM.moduleName('pages/anime/details')
 			},
 			{
+				route: '/profile',
+				name: 'profile',
+				moduleId: PLATFORM.moduleName('pages/user/details')
+			},
+			{
 				route: '/success',
 				name: 'success',
 				moduleId: PLATFORM.moduleName('pages/login/success') //TODO: DELETE ME

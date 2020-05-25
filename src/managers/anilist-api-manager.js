@@ -16,7 +16,7 @@ export class AnilistApiManager {
                 variables: variables
             })
         };
-        // First, try to get access token from local storage
+        // TODO: First, try to get access token from local storage
         
         if (accessToken) {
             options.headers['Authorization'] = 'Bearer ' + accessToken;
@@ -208,5 +208,106 @@ export class AnilistApiManager {
 		mainQuery += `{ ${animeQuery} }`;
 
 		return this.queryAnilist(mainQuery);
-	}
+    }
+    
+    getUserAnime(aInUserName) {
+        let allUserAnimeQuery = "{MediaListCollection(userName:\""+aInUserName+"\",type:ANIME){" +
+            `lists{
+                name 
+                isCustomList 
+                isCompletedList:isSplitCompletedList entries{
+                ...mediaListEntry
+                }
+            }
+            user{
+                id 
+                name 
+                avatar{
+                large
+                }
+                mediaListOptions{
+                scoreFormat
+                rowOrder 
+                animeList{
+                    sectionOrder 
+                    customLists 
+                    splitCompletedSectionByFormat 
+                }
+                }
+            }
+            }
+        }
+        fragment mediaListEntry on MediaList{
+            mediaId 
+            status 
+            score 
+            customLists  
+            media{
+            id 
+            title{
+                english 
+                romaji
+            }
+            coverImage{
+                extraLarge 
+                large
+            }
+            episodes  
+            averageScore 
+            popularity 
+            genres 
+            tags {
+                name
+                isMediaSpoiler
+                isGeneralSpoiler
+              }
+            }
+        }`
+        let variables = {userName: aInUserName}
+        return this.queryAnilist(allUserAnimeQuery, variables);
+    }
+
+    getUserStats(aInUserName) {
+        let query = "query($name:String){User(name:\""+aInUserName+"\"){" +
+                `id 
+                name 
+                statistics{
+                    anime{
+                        genres{
+                            genre 
+                            count 
+                            meanScore 
+                            minutesWatched  
+                            mediaIds
+                        }
+                        tags{
+                            tag {
+                                id 
+                                name
+                            }
+                            count 
+                            meanScore 
+                            minutesWatched 
+                            mediaIds
+                        }
+                    }
+                }
+            }
+        }`;
+        return this.queryAnilist(query);
+    }
+
+    getAnimeSeriesRelations(aInAnimeId) {
+        let query = `fragment myMedia on 
+        Media {
+          id
+          relations{edges{id relationType(version:2)node{id}}}
+        }
+        {
+          `+"anime:Media(id:"+aInAnimeId+") {" +
+            `...myMedia
+          }
+        }`
+        return this.queryAnilist(query);
+    }
 }

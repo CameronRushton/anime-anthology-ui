@@ -1,16 +1,17 @@
 <template>
   <header scroll_position.bind="scrollTop" scroll_fn.bind="scrollFn"></header>
   <div class="container">
-    <h1> Anime I have seen... </h1>
+    Load your Anilist
+    <input type="text" value.bind="username"/>
+    <button click.delegate="navigateToProfileStats()">Go</button>
     <div class="center"> <!-- Clicking one of these should change the filter -->
       <div class="levelBar">
-
+        <a class="clickable">Beginner</a> <span>0 - 10</span>
+        <a>Novice</a> <span>10 - 30</span>
+        <a>Intermediate</a> <span>30 - 100</span>
+        <a>Advanced</a> <span>100 - 200</span>
+        <a>Expert</a> <span>200+</span>
       </div>
-      <a class="clickable">Beginner</a> <span>0 - 10</span>
-      <a>Novice</a> <span>10 - 30</span>
-      <a>Intermediate</a> <span>30 - 100</span>
-      <a>Advanced</a> <span>100 - 200</span>
-      <a>Expert</a> <span>200+</span>
     </div>
     <div class="filters">
       <h3>Filters</h3>
