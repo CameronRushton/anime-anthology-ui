@@ -15,33 +15,60 @@ export class App {
 	}
 
 	configureRouter(config, router) {
-		config.title = "Aurelia Initializr";
+		config.title = "ShoYuAnime";
 		config.options.pushState = true;
 		config.options.root = "/";
+		config.addPipelineStep('authorize', AuthorizeStep);
 		config.map([
 			{
 				route: '/',
 				name: 'home',
 				moduleId: PLATFORM.moduleName('pages/home/home'),
-				title: "Home"
+				title: "Home",
+				settings: { roles: [] }
 			},
 			{
 				route: '/series', //TODO: Rename this because not all anime are series
 				name: 'anime',
-				moduleId: PLATFORM.moduleName('pages/anime/details')
+				moduleId: PLATFORM.moduleName('pages/anime/details'),
+				settings: { roles: [] }
 			},
 			{
 				route: '/profile',
 				name: 'profile',
-				moduleId: PLATFORM.moduleName('pages/user/details')
+				moduleId: PLATFORM.moduleName('pages/user/details'),
+				settings: { roles: [] }
 			},
 			{
-				route: '/success',
-				name: 'success',
-				moduleId: PLATFORM.moduleName('pages/login/success') //TODO: DELETE ME
+				route: '/login',
+				name: 'login',
+				moduleId: PLATFORM.moduleName('pages/login/login'),
+				title: "Login",
+				settings: { roles: [] }
+			},
+			{
+				route: '/admin',
+				name: 'admin',
+				moduleId: PLATFORM.moduleName('pages/admin/admin'),
+				settings: { roles: ['admin'] }
 			}
 		]);
 	}
 
 }
+
+class AuthorizeStep {
+    run(navigationInstruction, next) {
+      if (navigationInstruction.getAllInstructions().some(i => i.config.settings.roles.indexOf('admin') !== -1)) {
+        var isAdmin = /* TODO: insert magic here - get from back end */false;
+        if (!isAdmin) {
+          return next.cancel(new Redirect('home'));
+        }
+      }
+  
+      return next();
+    }
+  }
+  
+
 

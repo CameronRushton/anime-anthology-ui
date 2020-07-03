@@ -2,9 +2,80 @@
     <div>
         Your anime
     </div>
-    <div repeat.for="anime of completedAnime">
-        ${anime}
+    <!-- <div class="container">
+        <div class="row">
+            <div repeat.for="anime of pagedCompletedAnime" class="col-xl-3 col-lg-4 col-md-12 media-item">
+                <div class="image" style="background-image: url(${anime.media.coverImage.large});">
+                    <div class="overlay">
+                        <div class="studio">${anime.media.title.romaji}</div>
+                    </div>
+                </div>
+                <button style="height: 30px" click.delegate="searchForSeries(anime)">Search</button>
+                <div if.bind="anime.showAddToDb"><button click.delegate="addAnimeToDatabase()">Add</button></div>
+            </div>
+        </div>
+    </div> -->
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+            <div repeat.for="anime of pagedCompletedAnime" class="card">
+                <div class="card-header" id="heading${anime.mediaId}">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${anime.mediaId}" aria-expanded="false" aria-controls="collapse${anime.mediaId}">
+                            ${anime.media.title.romaji}
+                        </button>
+                    </h2>
+                </div>
+            
+                <div id="collapse${anime.mediaId}" class="collapse show" aria-labelledby="heading${anime.mediaId}" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <!-- <div class="row">
+                            <div repeat.for="anime of pagedCompletedAnime" class="col-xl-3 col-lg-4 col-md-12 media-item">
+                                <div class="image" style="background-image: url(${anime.media.coverImage.large});">
+                                    <div class="overlay">
+                                        <div class="studio">${anime.media.title.romaji}</div>
+                                    </div>
+                                </div>
+                                <button style="height: 30px" click.delegate="searchForSeries(anime)">Search</button>
+                                <div if.bind="anime.showAddToDb"><button click.delegate="addAnimeToDatabase()">Add</button></div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <button click.delegate="addAnimeToDatabase()">Dig</button>
+    <!-- <div class="container">
+        <div class="row">
+            <div repeat.for="anime of pagedCompletedAnime" class="col-xl-4 col-lg-6 col-md-12 media-item">
+                <div click.delegate="navigateToAnimeDetails(anime.mediaId)">
+
+                </div>
+                
+            </div>
+        </div>
+    </div> -->
+
+    <div style="position: fixed; height: 100px; width: 100%; color: white; background-color: black; bottom: 0px;">${currentAnime.series} Found: ${currentAnime.series.length}</div>
 </template>
+
+
+<!--
+customLists: {Beginner: false, Novice: false, Intermediate: true, Advanced: false, Expert: false}
+media: {id: 21366, title: {…}, coverImage: {…}, episodes: 22, averageScore: 83, …}
+mediaId: 21366
+score: 79
+status: "COMPLETED"
+
+media ->
+
+averageScore: 83
+coverImage: {extraLarge: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21366-u3ksu16pivGg.png", large: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21366-u3ksu16pivGg.png"}
+episodes: 22
+genres: (2) ["Drama", "Slice of Life"]
+id: 21366
+popularity: 56003
+tags: (9) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]  -> 0: {name: "Coming of Age", isMediaSpoiler: false, isGeneralSpoiler: false}
+title: {english: "March Comes in Like a Lion", romaji: "3-gatsu no Lion"}
+
+-->

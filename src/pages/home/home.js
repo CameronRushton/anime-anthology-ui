@@ -1,21 +1,23 @@
 import { inject } from 'aurelia-framework';
-import { Router } from "aurelia-router"
+import { Router } from "aurelia-router";
 import { MockAnilistAPI } from 'managers/mock-anilist-api';
 import { AnilistApiManager } from 'managers/anilist-api-manager';
+import { AnimeManager } from 'managers/anime-manager';
 
-@inject(Router, MockAnilistAPI, AnilistApiManager)
+
+@inject(Router, MockAnilistAPI, AnilistApiManager, AnimeManager)
 export class Home {
     
-    constructor(router, mockAnilistAPI, anilistApiManager) {
+    constructor(router, mockAnilistAPI, anilistApiManager, animeManager) {
         this.router = router;
         this.anilistAPI = mockAnilistAPI;
         this.anilistApiManager = anilistApiManager;
+        this.animeManager = animeManager;
 
         this.username;
     }
 
     attached() {
-        // window.localStorage.setItem('myCat', 'Tom'); https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
         this.highestRatedAllTime = this.anilistAPI.getHighestRatedAllTime(1);
         this.highestRatedAllTime = this.highestRatedAllTime.concat(this.anilistAPI.getHighestRatedAllTime(2));
     }
@@ -28,5 +30,4 @@ export class Home {
     navigateToAnimeDetails(id) {
         this.router.navigateToRoute("anime", {id})
     }
-
 }

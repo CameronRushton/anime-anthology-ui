@@ -1,12 +1,12 @@
 @import "resources/components/header/header";
 @import "resources/components/anime-card/anime-card";
 @import "resources/util";
-
+@import "pages/login/login";
   
 body {
   line-height: 24px;
   font-size: 14px;
-  font-family: "Lato", sans-serif;
+  font-family: "Muli", sans-serif;
   // font-family: Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: normal;
   color: $text-color;
@@ -106,6 +106,22 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 75%;
 }
 
-.levelBar {
-  
+// Copied from anime-card: do refactor eventually
+.image {
+  height: 265px;
+  width: 200px;
+  border-radius: 3px;
+
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  .overlay {
+      padding: 10px;
+      background-color: rgba(0,0,0,0.6);
+  }
 }

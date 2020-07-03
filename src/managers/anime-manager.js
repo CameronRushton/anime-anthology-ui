@@ -17,8 +17,8 @@ export class AnimeManager extends AbstractManager {
 		};
 
 		return this.httpClient.fetch(`/anime/${id}`, options)
-			.then(this.handleError)
-			.then(this.json);
+			.then(this.json)
+			.then(this.handleError);
 	}
 
 	createAnime(animeDto) {
@@ -29,7 +29,7 @@ export class AnimeManager extends AbstractManager {
 			},
 			body: JSON.stringify(animeDto)
 		};
-		return this.httpClient.fetch(`/anime`, options)
+		return this.httpClient.fetch(`api/v0/admin/anime`, options)
             .then(this.handleError)
             .then(this.json);
     }

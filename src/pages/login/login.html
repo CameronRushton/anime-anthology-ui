@@ -1,0 +1,22 @@
+<template>
+    <header></header>
+    <div class="login container">
+        <h2>
+            Login
+        </h2>
+
+        <div class="credentials center" with.bind="userDTO">
+            <div class="field">
+                <label>Username</label>
+                <input type="text" value.bind="username"/>
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" value.bind="password"/>
+            </div>
+            <div>
+                <button click.delegate="login()">Login</button>
+            </div>
+        </div>
+    </div>
+</template>
