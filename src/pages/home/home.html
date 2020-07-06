@@ -1,33 +1,34 @@
 <template>
-  <header scroll_position.bind="scrollTop" scroll_fn.bind="scrollFn"></header>
-  <div class="container">
-    <h1> Anime I have seen... </h1>
-    <div class="center"> <!-- Clicking one of these should change the filter -->
-      <div class="levelBar">
+	<header scroll_position.bind="scrollTop" scroll_fn.bind="scrollFn"></header>
+	<div class="container">
+		<h1> Anime I have seen... </h1>
+		<div class="center">
+			<!-- Clicking one of these should change the filter -->
+			<div class="levelBar">
 
-      </div>
-      <a class="clickable">Beginner</a> <span>0 - 10</span>
-      <a>Novice</a> <span>10 - 30</span>
-      <a>Intermediate</a> <span>30 - 100</span>
-      <a>Advanced</a> <span>100 - 200</span>
-      <a>Expert</a> <span>200+</span>
-    </div>
-    <div class="filters">
-      <h3>Filters</h3>
-      <label>Level</label>
-      <select>
-        <option>Beginner</option>
-        <option>Novice</option>
-        <option>Intermediate</option>
-        <option>Advanced</option>
-        <option>Expert</option>
-        <option>Show All</option>
-      </select>
-    </div>
-    <div class="row">
-      <div repeat.for="anime of highestRatedAllTime" class="col-xl-4 col-lg-6 col-md-12 media-item">
-        <anime-card data.bind="anime" click.delegate="navigateToAnimeDetails(anime.id)"></anime-card>
-      </div>
-    </div>
-  </div>
+			</div>
+			<a class="clickable">Beginner</a> <span>0 - 10</span>
+			<a>Novice</a> <span>10 - 30</span>
+			<a>Intermediate</a> <span>30 - 100</span>
+			<a>Advanced</a> <span>100 - 200</span>
+			<a>Expert</a> <span>200+</span>
+		</div>
+		<div class="filters">
+			<h3>Filters</h3>
+			<label>Level</label>
+			<select value.bind="levelValue" change.delegate="levelValueChanged(levelValue)">
+				<option value="ShowAll">Show All</option>
+				<option value="Beginner">Beginner</option>
+				<option value="Novice">Novice</option>
+				<option value="Intermediate">Intermediate</option>
+				<option value="Advanced">Advanced</option>
+				<option value="Expert">Expert</option>
+			</select>
+		</div>
+		<div class="row">
+			<div repeat.for="anime of highestRatedAllTime" class="col-xl-4 col-lg-6 col-md-12 media-item">
+				<anime-card data.bind="anime" click.delegate="navigateToAnimeDetails(anime.id)"></anime-card>
+			</div>
+		</div>
+	</div>
 </template>
