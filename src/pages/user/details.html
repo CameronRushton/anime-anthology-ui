@@ -1,64 +1,89 @@
-<template>
-    <div>
-        Your anime
-    </div>
-    <!-- <div class="container">
-        <div class="row">
-            <div repeat.for="anime of pagedCompletedAnime" class="col-xl-3 col-lg-4 col-md-12 media-item">
-                <div class="image" style="background-image: url(${anime.media.coverImage.large});">
+<template> <!-- TODO: This is admin-only or should be deleted. This whole process of populating the db should be done secretly. This page is for user stats and recommendations with filters and shit. -->
+    <!-- <header></header> -->
+
+
+    <!-- <button style="height: 30px" click.delegate="searchForSeries(anime)">Search</button> -->
+    <!-- <div if.bind="anime.showAddToDb"><button click.delegate="addAnimeToDatabase()">Add</button></div> -->
+
+    <div class="flex">
+        <div class="left-section">
+            <div class="cover-items">
+                <div repeat.for="anime of completedAnime" click.delegate="searchForSeries(anime)">
+                    <div class="img" style="background-image: url(${anime.media.coverImage.large});">
+                        <div class="overlay">
+                            <div class="studio">${anime.media.title.romaji}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div show.bind="selectedAnime" class="right-section">
+            <div class="details">
+                <div class="image-large" style="background-image: url(${selectedAnime.media.coverImage.extraLarge});"></div>
+                <div>
+                    <h2>${selectedAnime.media.title.romaji}</h2>
+                    <span>Status: ##</span>
+                </div>
+            </div>
+            <h2>Related</h2>
+            <div class="related-items">
+                <div class="img" repeat.for="anime of selectedAnime.series" style="background-image: url(${anime.coverImage.large});">
                     <div class="overlay">
-                        <div class="studio">${anime.media.title.romaji}</div>
-                    </div>
-                </div>
-                <button style="height: 30px" click.delegate="searchForSeries(anime)">Search</button>
-                <div if.bind="anime.showAddToDb"><button click.delegate="addAnimeToDatabase()">Add</button></div>
-            </div>
-        </div>
-    </div> -->
-    <div class="container">
-        <div class="accordion" id="accordionExample">
-            <div repeat.for="anime of pagedCompletedAnime" class="card">
-                <div class="card-header" id="heading${anime.mediaId}">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${anime.mediaId}" aria-expanded="false" aria-controls="collapse${anime.mediaId}">
-                            ${anime.media.title.romaji}
-                        </button>
-                    </h2>
-                </div>
-            
-                <div id="collapse${anime.mediaId}" class="collapse show" aria-labelledby="heading${anime.mediaId}" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <!-- <div class="row">
-                            <div repeat.for="anime of pagedCompletedAnime" class="col-xl-3 col-lg-4 col-md-12 media-item">
-                                <div class="image" style="background-image: url(${anime.media.coverImage.large});">
-                                    <div class="overlay">
-                                        <div class="studio">${anime.media.title.romaji}</div>
-                                    </div>
-                                </div>
-                                <button style="height: 30px" click.delegate="searchForSeries(anime)">Search</button>
-                                <div if.bind="anime.showAddToDb"><button click.delegate="addAnimeToDatabase()">Add</button></div>
-                            </div>
-                        </div> -->
+                        <div if.bind="anime.title.romaji" class="studio">${anime.title.romaji}</div>
+                        <div else class="studio">${anime.title.english}</div>
                     </div>
                 </div>
             </div>
+            <h2>Query</h2>
+            <pre class="post-query">{<br>   id: ${currentAnime.id},<br>   related: ${currentAnime.series}<br>}</pre>
+            <button if.bind="true">Add</button> <!-- Show only when we're good to add to db -->
         </div>
     </div>
 
-    <!-- <div class="container">
-        <div class="row">
-            <div repeat.for="anime of pagedCompletedAnime" class="col-xl-4 col-lg-6 col-md-12 media-item">
-                <div click.delegate="navigateToAnimeDetails(anime.mediaId)">
-
-                </div>
-                
-            </div>
-        </div>
-    </div> -->
-
-    <div style="position: fixed; height: 100px; width: 100%; color: white; background-color: black; bottom: 0px;">${currentAnime.series} Found: ${currentAnime.series.length}</div>
+    <!-- <div style="position: fixed; height: 100px; width: 100%; color: white; background-color: black; bottom: 0px;">${currentAnime.series} Found: ${currentAnime.series.length}</div> -->
 </template>
 
+
+<!-- <div class="container">
+    <div class="medialist">
+        <div class="lists">
+            <div class="list-wrap">
+                <div class="section-name">
+                    Name
+                </div>
+                <div class="list-section">
+                    <div class="list-entries">
+                        <div class="entity-card">
+                            <div class="cover">
+                                <div class="edit">
+
+                                </div>
+                                <div class="image">
+
+                                </div>
+                            </div>
+                            <div class="title">
+
+                            </div>
+                            <div class="score">
+
+                            </div>
+                            <div class="progress">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> -->
+
+
+
+<!-- <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis-h" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-ellipsis-h fa-w-16 fa-lg"><path fill="currentColor" d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z" class=""></path></svg> -->
 
 <!--
 customLists: {Beginner: false, Novice: false, Intermediate: true, Advanced: false, Expert: false}

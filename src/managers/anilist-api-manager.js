@@ -249,7 +249,7 @@ export class AnilistApiManager {
                 romaji
             }
             coverImage{
-                extraLarge 
+                extraLarge
                 large
             }
             episodes  
