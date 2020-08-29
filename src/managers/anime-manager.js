@@ -16,7 +16,7 @@ export class AnimeManager extends AbstractManager {
 			},
 		};
 
-		return this.httpClient.fetch(`/anime/${id}`, options)
+		return this.httpClient.fetch(`api/v0/anime/${id}`, options)
 			.then(this.json)
 			.then(this.handleError);
 	}
@@ -38,7 +38,7 @@ export class AnimeManager extends AbstractManager {
 		var options = {
 			method: "DELETE"
 		};
-		return this.httpClient.fetch(`/anime/${id}`, options)
+		return this.httpClient.fetch(`anime/${id}`, options)
 			.then(this.handleError);
 	}
 
@@ -50,7 +50,7 @@ export class AnimeManager extends AbstractManager {
 			},
 			body: JSON.stringify(animeDto)
 		};
-		return this.httpClient.fetch(`/anime`, options)
+		return this.httpClient.fetch(`anime`, options)
             .then(this.handleError)
             .then(this.json);
 	}

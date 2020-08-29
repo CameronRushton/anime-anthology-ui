@@ -1,3 +1,29 @@
 <template>
-    This is a test anime
+    <div>
+        <div class="banner" style="background-image: url('${anime.bannerImage}')">
+            <div class="shadow"></div>
+        </div>
+        <div class="anime-band">
+            <div class="ad-container container" style="min-height: 250px;">
+                <div class="cover-wrap overlap-banner">
+                    <div class="cover-wrap-inner">
+                        <img class="cover" src="${anime.coverImage.large}"/>
+                    </div>
+                </div>
+                <div class="content">
+                    <h2>${anime.title.english}</h2>
+                    <p class="description">${anime.description}</p>
+                </div>
+            </div>
+        </div>
+        <h2>Related</h2>
+        <div class="related-items">
+            <div class="img" repeat.for="anime of series" style="background-image: url(${anime.coverImage.large});">
+                <div class="overlay">
+                    <div if.bind="anime.title.romaji" class="studio">${anime.title.romaji}</div>
+                    <div else class="studio">${anime.title.english}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

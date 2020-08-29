@@ -205,7 +205,8 @@ export class AnilistApiManager {
 			    ...myMedia
 			},`;
 		});
-		mainQuery += `{ ${animeQuery} }`;
+        mainQuery += `{ ${animeQuery} }`;
+        // TODO: If there's more than 500 complexity, spawn another promise and then return a promise.all().
 
 		return this.queryAnilist(mainQuery);
     }

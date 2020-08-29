@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (min-width: 1540px) {
   .container {
-    max-width: 1320px;
+    max-width: 1520px;
     padding-left: 100px;
     padding-right: 100px;
   }
@@ -236,7 +236,63 @@ h1, h2, h3, h4, h5, h6 {
 //   }
 // }
 
+// Anime details
+.banner {
+  background-position: 50% 35%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  margin-top: -58px;
+  .shadow {
+    background: linear-gradient(180deg,rgba(6,13,24,0) 40%,rgba(6,13,24,.6));
+    height: 100%;
+    width: 100%;
+  }
+}
 
+.anime-band {
+  background: $background-color-1;
+  position: relative;
+  .ad-container {
+    display: grid;
+    grid-column-gap: 30px;
+    grid-template-columns: 215px auto;
+    .overlap-banner {
+      margin-top: -125px;
+    }
+    .content {
+      display: inline-grid;
+      grid-template-rows: -webkit-min-content -webkit-min-content auto;
+      grid-template-rows: min-content min-content auto;
+      padding-top: 25px;
+      .description {
+        color: $text-color;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        margin: 0;
+        max-width: 900px;
+        padding: 15px 0;
+        transition: .2s;
+      }
+    }
+  }
+}
+
+.cover-wrap {
+  position: relative;
+  .cover-wrap-inner {
+    position: static;
+    .cover {
+      background-color: rgba(212,230,245,.5);
+      border-radius: 2px;
+      box-shadow: 0 0 29px rgba(49,54,68,.25);
+      margin-top: 15px;
+      width: 100%;
+    }
+  }
+}
+
+// What currently is user details
 .cover-items {
   display: grid;
   grid-gap: 30px;
@@ -274,16 +330,16 @@ h1, h2, h3, h4, h5, h6 {
 
     }
   }
-  .related-items {
-    display: grid;
-    grid-gap: 30px;
-    grid-template-columns: repeat(30, 150px);
-    grid-template-rows: 210px;
-    overflow-x: auto;
-    width: 30vw;
-  }
   .post-query {
     background-color: rgba(255, 255, 255, 0.1);
     color: lightgrey;
   }
+}
+.related-items {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(30, 150px);
+  grid-template-rows: 210px;
+  overflow-x: auto;
+  width: 30vw;
 }

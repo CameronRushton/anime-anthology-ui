@@ -1,17 +1,41 @@
 import { inject } from 'aurelia-framework';
 import { Router } from "aurelia-router"
-import { MockAnilistAPI } from 'managers/mock-anilist-api';
+import { AnilistApiManager } from 'managers/anilist-api-manager';
+import { AnimeManager } from 'managers/anime-manager';
 
-@inject(Router, MockAnilistAPI)
+@inject(Router, AnilistApiManager, AnimeManager)
 export class Details {
     
-    constructor(router, mockAnilistAPI) {
+    constructor(router, anilistApiManager, animeManager) {
         this.router = router;
-        this.anilistAPI = mockAnilistAPI;
+        this.anilistApiManager = anilistApiManager;
+        this.animeManager = animeManager;
     }
 
-    activate(id) {
-        console.log(id);
+    activate(params) {
+        this.animeId = params.id;
+    }
+
+    attached() {
+        this.animeManager.getAnime(this.animeId).then(result => {
+            // We want to get all we need in one query from anilist
+            //result.series.push(this.animeId);
+            return this.anilistApiManager.getDataForAnime(result.series);
+        }).then(result => {
+            // Convert to an array
+            let numAnime = Object.keys(result.data).length;
+            this.series = [];
+            for (let i = 0; i < numAnime; i += 1) {
+                this.series.push(result.data["anime"+i]);
+            }
+            // TODO: Change from filter to something that plucks the one out
+            this.anime = this.series.filter(anime => {
+                return anime.id.toString() === this.animeId;
+            })[0];
+            this.series = this.series.filter(anime => {
+                return anime.format === "TV" || anime.format === "Movie" || anime.format === "Special";
+            });
+        });
     }
 
 }

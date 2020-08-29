@@ -20,7 +20,8 @@
     font-family: inherit;
     font-size: x-large;
     font-weight: 600;
-    color: $title-color;
+    color: $text-color;
+    opacity: 87%;
     transition: opacity 0.3s ease-out 1.0s;
     display: flex;
     align-items: center;
@@ -46,7 +47,7 @@
       }
     }
     .item:hover {
-      color: $text-color-1;
+      color: $text-color-hover;
     }
   }
   &.fixed {

@@ -1,12 +1,14 @@
 $green: #06b124;
 $orange: #E39714;
 $red: #C40A0A;
-$title-color: #FFF;
-$text-color: #D7D7D7;
-$text-color-1: #A5A5A5;
-$background-color: #121212;
-$background-border: #2f3234;
-$shoyu: #08D8B9;
+$text-color: #FFFFFF;
+$text-color-hover: #A5A5A5;
+$background-color: rgba(18, 18, 18, 1);
+$background-color-1: rgba(18, 18, 18, 0.95);
+$background-color-2: rgba(18, 18, 18, 0.93);
+$background-color-10: rgba(18, 18, 18, 0.84);
+$shoyu: #08D8B9; // #03B5A3
+$blue: #1B5299;
 
 .thin-outline {
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
