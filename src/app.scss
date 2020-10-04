@@ -1,12 +1,12 @@
 @import "resources/components/header/header";
 @import "resources/components/anime-card/anime-card";
 @import "resources/util";
-
+@import "pages/login/login";
   
 body {
   line-height: 24px;
   font-size: 14px;
-  font-family: "Lato", sans-serif;
+  font-family: "Muli", sans-serif;
   // font-family: Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: normal;
   color: $text-color;
@@ -46,14 +46,14 @@ h1, h2, h3, h4, h5, h6 {
       padding: 0px;
   }
 }
-@media (max-width: 1560px) {
+@media (max-width: 1540px) {
   .container {
-    max-width: 1340px;
+    max-width: 1240px;
     padding-left: 30px;
     padding-right: 30px;
   }
 }
-@media (min-width: 1560px) {
+@media (min-width: 1540px) {
   .container {
     max-width: 1520px;
     padding-left: 100px;
@@ -63,6 +63,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .row {
   margin-bottom: 20px;
+}
+
+.flex {
+  display: flex;
 }
 
 .media-item {
@@ -106,6 +110,236 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 75%;
 }
 
-.levelBar {
-  
+// Copied from anime-card: do refactor eventually
+.img {
+  height: 210px; // 265
+  width: 150px; // 210
+  border-radius: 3px;
+
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  .overlay {
+      padding: 10px;
+      background-color: rgba(0,0,0,0.6);
+  }
+}
+
+// For profile
+// .medialist {
+//   margin-top: 40px;
+//   display: grid;
+//   grid-template-columns: 180px auto;
+//   grid-column-gap: 40px;
+
+//   .lists {
+//     position: relative;
+
+//     .list-wrap {
+//       .section-name {
+//         font-weight: 400;
+//       }
+
+//       .list-section {
+//         display: block;
+//         margin-bottom: 50px;
+//         width: 100%;
+
+//         .list-entries {
+//           display: grid;
+//           grid-gap: 30px;
+//           grid-template-columns: repeat(auto-fill, 150px);
+//           grid-template-rows: repeat(auto-fill, 210px);
+//           min-width: 0;
+//           width: 100%;
+
+//           .entity-card {
+//             border-radius: 3px;
+//             box-shadow: 0 2px 20px rgba(49,54,68,.2);
+//             color: lightgrey;
+//             display: inline-block;
+//             font-size: 1.3rem;
+//             height: 210px;
+//             position: relative;
+//             width: 100%;
+
+//             .cover {
+//               border-radius: 3px;
+//               height: 100%;
+//               left: 0;
+//               position: absolute;
+//               top: 0;
+//               width: 100%;
+//               z-index: 0;
+
+//               .edit {
+//                 align-items: center;
+//                 background: blue;
+//                 border-radius: 3px;
+//                 color: blue;
+//                 cursor: pointer;
+//                 display: flex;
+//                 height: 30px;
+//                 justify-content: center;
+//                 opacity: 0;
+//                 position: absolute;
+//                 right: 10px;
+//                 top: 10px;
+//                 transition: .2s;
+//                 width: 30px;
+//               }
+//               .image {
+//                 background-position: 50%;
+//                 background-repeat: no-repeat;
+//                 background-size: cover;
+//                 border-radius: 3px;
+//                 height: 100%;
+//                 width: 100%;
+//               }
+//             }
+//             .title {
+//               background: rgba(blue,.8);
+//               border-radius: 0 0 3px 3px;
+//               bottom: 0;
+//               left: 0;
+//               padding: 12px;
+//               padding-bottom: 35px;
+//               position: absolute;
+//               width: 100%;
+//               z-index: 2;
+//             }
+//             .score {
+//               text-align: right;
+//               right: 0;
+//               left: auto;
+//             }
+//             .progress {
+//               bottom: 0;
+//               color: blue;
+//               font-size: 1.2rem;
+//               left: 0;
+//               padding: 12px;
+//               position: absolute;
+//               text-align: left;
+//               width: 50%;
+//               z-index: 2;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// Anime details
+.banner {
+  background-position: 50% 35%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  margin-top: -58px;
+  .shadow {
+    background: linear-gradient(180deg,rgba(6,13,24,0) 40%,rgba(6,13,24,.6));
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.anime-band {
+  background: $background-color-1;
+  position: relative;
+  .ad-container {
+    display: grid;
+    grid-column-gap: 30px;
+    grid-template-columns: 215px auto;
+    .overlap-banner {
+      margin-top: -125px;
+    }
+    .content {
+      display: inline-grid;
+      grid-template-rows: -webkit-min-content -webkit-min-content auto;
+      grid-template-rows: min-content min-content auto;
+      padding-top: 25px;
+      .description {
+        color: $text-color;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        margin: 0;
+        max-width: 900px;
+        padding: 15px 0;
+        transition: .2s;
+      }
+    }
+  }
+}
+
+.cover-wrap {
+  position: relative;
+  .cover-wrap-inner {
+    position: static;
+    .cover {
+      background-color: rgba(212,230,245,.5);
+      border-radius: 2px;
+      box-shadow: 0 0 29px rgba(49,54,68,.25);
+      margin-top: 15px;
+      width: 100%;
+    }
+  }
+}
+
+// What currently is user details
+.cover-items {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fill, 150px);
+  grid-template-rows: repeat(auto-fill, 210px);
+}
+
+.left-section {
+  width: 60%;
+  padding: 50px 100px;
+  justify-content: center;
+  overflow: auto;
+  height: 85vh;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.left-section::-webkit-scrollbar {
+  display: none;
+}
+
+.right-section {
+  width: 40%;
+  padding: 50px 100px;
+  .details {
+    display: flex;
+    .image-large {
+      height: 295px;
+      width: 210px;
+      border-radius: 3px;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .title {
+
+    }
+  }
+  .post-query {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: lightgrey;
+  }
+}
+.related-items {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(30, 150px);
+  grid-template-rows: 210px;
+  overflow-x: auto;
+  // width: 30vw;
 }

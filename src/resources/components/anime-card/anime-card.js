@@ -62,7 +62,7 @@ export class AnimeCard {
             "Sci-Fi": false,
             "Thriller": false,
             "Horror": false,
-            "MahouShojou": false,
+            "MahouShoujo": false,
             "Mecha": false,
             "Music": false,
             "Sports": false,
