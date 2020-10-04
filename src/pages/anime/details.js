@@ -14,20 +14,22 @@ export class Details {
 
     activate(params) {
         this.animeId = params.id;
+        this.series = [];
     }
 
     attached() {
         this.animeManager.getAnime(this.animeId).then(result => {
             // We want to get all we need in one query from anilist
-            //result.series.push(this.animeId);
+            result.series.push(result.id);
+            this.animeId = result.id;
             return this.anilistApiManager.getDataForAnime(result.series);
-        }).then(result => {
-            // Convert to an array
-            let numAnime = Object.keys(result.data).length;
-            this.series = [];
-            for (let i = 0; i < numAnime; i += 1) {
-                this.series.push(result.data["anime"+i]);
-            }
+        }).then(results => {
+            results.forEach(part => {
+                const numAnime = Object.keys(part.data).length;
+                for (let i = 0; i < numAnime; i += 1) {
+                    this.series.push(part.data["anime"+i]);
+                }
+            }); 
             // TODO: Change from filter to something that plucks the one out
             this.anime = this.series.filter(anime => {
                 return anime.id.toString() === this.animeId;
