@@ -162,4 +162,57 @@ export class MockAnilistAPI {
         }
         return page2;
     }
+
+    getDataForAnime(numDetails) {
+        let animeId;
+        if (Array.isArray(numDetails)) {
+            animeId = numDetails[0];
+            numDetails = numDetails.length;
+        } else {
+            numDetails = 10;
+        }
+        let data1 = {};
+        let data2 = {};
+        for (let i = 0; i < Math.floor(numDetails/2); i += 1) {
+            data1["anime"+i] = this.makeAnime();
+            data2["anime"+i] = this.makeAnime();
+        }
+        if (animeId) {
+            // Put it in data part 2 to try and mix it up. It shouldn't matter where it is.
+            data2["anime0"] = this.makeAnime(animeId);
+        }
+       return new Promise((resolve, reject) => setTimeout(resolve, 0, Array.of({"data": data1}, {"data": data2})));
+    }
+
+    // Private methods ===============================================================================================================
+
+    makeAnime(id, year, month, day) {
+        const randId = Math.floor(Math.random() * Math.floor(9999));
+        const randYear = Math.floor(Math.random() * Math.floor(9999));
+        const randMonth = Math.floor(Math.random() * Math.floor(12));
+        const randDay = Math.floor(Math.random() * Math.floor(30));
+        return {
+            id: id || randId,
+            title: {
+                english: "Fairly Long English Test Title"
+            },
+            coverImage: {
+                large: "https:\/\/s4.anilist.co\/file\/anilistcdn\/media\/anime\/cover\/medium\/bx110277-zy2GFKrERvHv.jpg"
+            },
+            startDate: {
+                year: year || randYear,
+                month: month || randMonth,
+                day: day || randDay
+            },
+            bannerImage: "https:\/\/s4.anilist.co\/file\/anilistcdn\/media\/anime\/banner\/110277-iuGn6F5bK1U1.jpg",
+            season: "WINTER",
+            description: "The final season of <i>Title Goes Here<\/i>.<br>I should be on a new line",
+            format:"TV",
+            genres: ["Action","Drama","Fantasy","Mystery"],
+            averageScore: 75, // Can be null
+            studios: {
+                edges: [{isMain: true, node: { id: 569, name: "MAPPA" }}]
+            }
+        }
+    }
 }
